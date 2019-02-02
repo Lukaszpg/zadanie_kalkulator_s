@@ -1,6 +1,10 @@
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
+/dist
+/tmp
+/out-tsc
+/node_modules
 
 ### STS ###
 .apt_generated
@@ -24,3 +28,9 @@
 /dist/
 /nbdist/
 /.nb-gradle/
+
+### Misc ###
+npm-debug.log
+.DS_Store
+Thumbs.db
+.gitkeep
