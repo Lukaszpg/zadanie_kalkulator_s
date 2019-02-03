@@ -12,7 +12,7 @@ Currency rates are fetched from https://fixer.io/.
 
 ### Technologies used: 
 
-- Spring Boot as backend technology
+- Spring Boot as a backend technology
 - Gradle for backend dependency management and project building
 - NPM for frontend dependency management and transpiling from TypeScript to JavaScript
 - Angular 7 + Semantic UI for frontend
