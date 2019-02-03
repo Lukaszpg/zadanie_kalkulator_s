@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -35,10 +36,10 @@ public class CurrencyRateFetchingService {
     }
 
     public void getCurrencyRates() {
-        Stream.of(CurrencyCode.values()).forEach(this::getRateByCurrencyCode);
+        Stream.of(CurrencyCode.values()).forEach(this::getAndCacheRateByCurrencyCode);
     }
 
-    private void getRateByCurrencyCode(CurrencyCode currencyCode) {
+    private void getAndCacheRateByCurrencyCode(CurrencyCode currencyCode) {
         try {
             sendRequest(currencyCode);
         } catch (IOException e) {
@@ -80,15 +81,9 @@ public class CurrencyRateFetchingService {
     }
 
     private String readInputStream(InputStream inputStream) throws IOException {
-        String inputLine;
-        BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
-        StringBuilder content = new StringBuilder();
-        while ((inputLine = in.readLine()) != null) {
-            content.append(inputLine);
+        try (BufferedReader buffer = new BufferedReader(new InputStreamReader(inputStream))) {
+            return buffer.lines().collect(Collectors.joining("\n"));
         }
-        in.close();
-
-        return content.toString();
     }
 
     private String prepareUrl(CurrencyCode currencyCode) {

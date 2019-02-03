@@ -7,7 +7,6 @@ import pro.lukasgorny.contractearningscalculator.dto.CurrencyRateDto;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
 
 @Component
 public class CurrencyRateCache {
@@ -23,13 +22,7 @@ public class CurrencyRateCache {
     }
 
     private Double getRate(CurrencyDto currencyDto) {
-        Optional<CurrencyRateDto> rateOptional = currencyDto.getRates().stream().findFirst();
-
-        if(rateOptional.isPresent()) {
-            return rateOptional.get().getRate();
-        }
-
-        return 0.0;
+        return currencyDto.getRates().stream().findFirst().map(CurrencyRateDto::getRate).orElse(0.0);
     }
 }
 
