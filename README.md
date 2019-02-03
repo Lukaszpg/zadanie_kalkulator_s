@@ -20,6 +20,8 @@ Currency rates are fetched from https://fixer.io/.
 
 ### Building the project
 
+Requires Java JDK 1.8+ installed and JAVA_HOME path set in the environment variables.
+
 Clone the repo and execute gradle build task: 
 
 ```
