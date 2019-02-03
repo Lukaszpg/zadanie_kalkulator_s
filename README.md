@@ -1,6 +1,6 @@
 # Contract currency calculator
 
-This project is a recruitment task. Calculator can be used to calculate monthly contract earnings in Polish Zloty using following countries currency: 
+This project is a recruitment task. Calculator can be used to calculate monthly contract earnings in Polish Zloty using following countries: 
 
 - United Kingdom (25% tax cut, 600 GBP fixed costs)
 - Germany (20% tax cut, 800 EUR fixed costs)
@@ -12,13 +12,15 @@ Currency rates are fetched from https://fixer.io/.
 
 ### Technologies used: 
 
-- Spring Boot as backend technology
+- Spring Boot as a backend technology
 - Gradle for backend dependency management and project building
 - NPM for frontend dependency management and transpiling from TypeScript to JavaScript
 - Angular 7 + Semantic UI for frontend
 - Spock for testing
 
 ### Building the project
+
+Requires Java JDK 1.8+ installed and JAVA_HOME path set in the environment variables.
 
 Clone the repo and execute gradle build task: 
 
