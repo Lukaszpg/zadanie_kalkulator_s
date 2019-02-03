@@ -47,11 +47,17 @@ public class CurrencyRateFetchingService {
     }
 
     private void sendRequest(CurrencyCode currencyCode) throws IOException {
+        HttpURLConnection connection = prepareConnection(currencyCode);
+        getResponse(connection);
+    }
+
+    private HttpURLConnection prepareConnection(CurrencyCode currencyCode) throws IOException {
         URL url = new URL(prepareUrl(currencyCode));
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Accept", "application/json");
-        getResponse(connection);
+
+        return connection;
     }
 
     private void getResponse(HttpURLConnection connection) throws IOException {
@@ -68,6 +74,11 @@ public class CurrencyRateFetchingService {
         logger.error(readInputStream(errorStream));
     }
 
+    private void parseResponseAndAddToCache(InputStream inputStream) throws IOException {
+        String json = readInputStream(inputStream);
+        currencyRateCache.add(new Gson().fromJson(json, CurrencyDto.class));
+    }
+
     private String readInputStream(InputStream inputStream) throws IOException {
         String inputLine;
         BufferedReader in = new BufferedReader(new InputStreamReader(inputStream));
@@ -78,11 +89,6 @@ public class CurrencyRateFetchingService {
         in.close();
 
         return content.toString();
-    }
-
-    private void parseResponseAndAddToCache(InputStream inputStream) throws IOException {
-        String json = readInputStream(inputStream);
-        currencyRateCache.add(new Gson().fromJson(json, CurrencyDto.class));
     }
 
     private String prepareUrl(CurrencyCode currencyCode) {
