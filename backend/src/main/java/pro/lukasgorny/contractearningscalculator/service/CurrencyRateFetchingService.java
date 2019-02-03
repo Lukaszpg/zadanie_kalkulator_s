@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import pro.lukasgorny.contractearningscalculator.cache.CurrencyRateCache;
 import pro.lukasgorny.contractearningscalculator.domain.CurrencyCode;
@@ -20,8 +21,6 @@ import java.util.stream.Stream;
 
 @Service
 public class CurrencyRateFetchingService {
-
-    private static final int MIN_ERROR_CODE = 299;
 
     private Logger logger = LoggerFactory.getLogger(CurrencyRateFetchingService.class);
 
@@ -58,7 +57,7 @@ public class CurrencyRateFetchingService {
     private void getResponse(HttpURLConnection connection) throws IOException {
         int statusCode = connection.getResponseCode();
 
-        if (statusCode > MIN_ERROR_CODE) {
+        if (statusCode != HttpStatus.OK.value()) {
             logErrorResponse(connection.getErrorStream());
         } else {
             parseResponseAndAddToCache(connection.getInputStream());
