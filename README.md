@@ -1,6 +1,6 @@
 # Contract currency calculator
 
-This project is a recruitment task. Calculator can be used to calculate monthly contract earnings in Polish Zloty using following countries currency: 
+This project is a recruitment task. Calculator can be used to calculate monthly contract earnings in Polish Zloty using following countries: 
 
 - United Kingdom (25% tax cut, 600 GBP fixed costs)
 - Germany (20% tax cut, 800 EUR fixed costs)
