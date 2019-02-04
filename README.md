@@ -6,9 +6,9 @@ This project is a recruitment task. Calculator can be used to calculate monthly 
 - Germany (20% tax cut, 800 EUR fixed costs)
 - Poland (19% tax cut, 1200 PLN fixed costs)
 
-We assume that month has 22 days.
+Month has 22 days by default (configurable in application.properties).
 
-Currency rates are fetched from https://fixer.io/.
+Currency rates are fetched from http://api.nbp.pl/.
 
 ### Technologies used: 
 
@@ -42,8 +42,10 @@ Gradle is configured to do all the following things in this order:
 
 ### Launching the project
 
-Navigate to backend\build\libs and launch the project with 
+Navigate to backend\build\libs and launch the project with:
 
 ```
 java -jar calculator-1.0.0.jar
 ```
+
+Default server ip and port: http://localhost:8080

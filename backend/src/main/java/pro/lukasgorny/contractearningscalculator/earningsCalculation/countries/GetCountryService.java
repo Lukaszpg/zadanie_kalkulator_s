@@ -1,10 +1,9 @@
-package pro.lukasgorny.contractearningscalculator.earningsCalculation;
+package pro.lukasgorny.contractearningscalculator.earningsCalculation.countries;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.Country;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryFactory;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum;
+
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,5 +21,9 @@ public class GetCountryService {
 
     public List<Country> getAll() {
         return Stream.of(CountryEnum.values()).map(countryFactory::getCountry).collect(Collectors.toList());
+    }
+
+    public Country getCountryByCountryEnum(CountryEnum countryEnum) {
+        return countryFactory.getCountry(countryEnum);
     }
 }

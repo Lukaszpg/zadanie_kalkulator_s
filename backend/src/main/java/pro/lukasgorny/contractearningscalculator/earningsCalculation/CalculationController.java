@@ -1,22 +1,25 @@
 package pro.lukasgorny.contractearningscalculator.earningsCalculation;
 
-import com.fasterxml.jackson.databind.exc.InvalidFormatException;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDto;
 
-import javax.validation.Valid;
+import pro.lukasgorny.contractearningscalculator.Messages;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDto;
 
 @RestController
 public class CalculationController {
 
+    private final Messages messages;
     private final EarningsCalculationService earningsCalculationService;
 
     @Autowired
-    public CalculationController(EarningsCalculationService earningsCalculationService) {
+    public CalculationController(Messages messages, EarningsCalculationService earningsCalculationService) {
+        this.messages = messages;
         this.earningsCalculationService = earningsCalculationService;
     }
 
@@ -24,13 +27,8 @@ public class CalculationController {
     public String calculate(@Valid @RequestBody CalculationDto calculationDto) {
         try {
             return earningsCalculationService.calculate(calculationDto).toString();
-        } catch (ExchangeRateNotFoundException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Exchange rate not available", exception);
+        } catch (ExchangeRateUnavailableException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, messages.get("exchange.rate.not.available"), exception);
         }
-    }
-
-    @ExceptionHandler(value = {InvalidFormatException.class})
-    public ResponseEntity handleIllegalArgumentException(InvalidFormatException exception) {
-        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 }

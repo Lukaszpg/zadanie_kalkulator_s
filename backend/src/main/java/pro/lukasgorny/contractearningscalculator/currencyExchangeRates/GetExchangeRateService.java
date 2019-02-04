@@ -1,14 +1,11 @@
 package pro.lukasgorny.contractearningscalculator.currencyExchangeRates;
 
+import java.math.BigDecimal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.CurrencyDto;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.ExchangeRateDto;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
 
-import java.util.ArrayList;
-import java.util.Optional;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.ExchangeRateUnavailableException;
 
 @Service
 public class GetExchangeRateService {
@@ -21,21 +18,11 @@ public class GetExchangeRateService {
     }
 
     @Cacheable(value = "exchangeRates")
-    public Optional<CurrencyDto> getExchangeRate(CurrencyCode currencyCode) {
+    public BigDecimal getExchangeRate(CurrencyCode currencyCode) throws ExchangeRateUnavailableException {
         if(CurrencyCode.PLN.equals(currencyCode)) {
-            return getOptionalForPolishCurrency();
+            return BigDecimal.ONE;
         }
 
         return getExchangeRateFromRemoteApiService.getExchangeRateFromRemoteApi(currencyCode);
-    }
-
-    private Optional<CurrencyDto> getOptionalForPolishCurrency() {
-        CurrencyDto currencyDto = new CurrencyDto();
-        ExchangeRateDto currencyExchangeRateDto = new ExchangeRateDto();
-        currencyDto.setRates(new ArrayList<>());
-        currencyExchangeRateDto.setRate(1.0);
-        currencyDto.getRates().add(currencyExchangeRateDto);
-
-        return Optional.of(currencyDto);
     }
 }

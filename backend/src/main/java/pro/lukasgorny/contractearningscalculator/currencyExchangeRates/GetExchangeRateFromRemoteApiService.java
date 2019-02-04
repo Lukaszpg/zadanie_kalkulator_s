@@ -1,16 +1,19 @@
 package pro.lukasgorny.contractearningscalculator.currencyExchangeRates;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.*;
-import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.CurrencyDto;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
-
+import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Optional;
+import java.util.function.Function;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.*;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.client.RestTemplate;
+
+import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.CurrencyDto;
+import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.ExchangeRateDto;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.ExchangeRateUnavailableException;
 
 @Service
 public class GetExchangeRateFromRemoteApiService {
@@ -18,11 +21,20 @@ public class GetExchangeRateFromRemoteApiService {
     @Value("${api.base.url}")
     private String apiBaseUrl;
 
-    public Optional<CurrencyDto> getExchangeRateFromRemoteApi(CurrencyCode currencyCode) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<CurrencyDto> result = restTemplate.exchange(apiBaseUrl, HttpMethod.GET, prepareHeadersEntity(), CurrencyDto.class, prepareParams(currencyCode));
+    private Function<ExchangeRateDto, BigDecimal> mapDtoToBigDecimal = (dto) -> BigDecimal.valueOf(dto.getRate());
 
-        return Optional.ofNullable(result.getBody());
+    public BigDecimal getExchangeRateFromRemoteApi(CurrencyCode currencyCode) throws ExchangeRateUnavailableException {
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<CurrencyDto> result;
+
+        try {
+            result = restTemplate.exchange(apiBaseUrl, HttpMethod.GET, prepareHeadersEntity(), CurrencyDto.class, prepareParams(currencyCode));
+        } catch (RestClientException exception) {
+            throw new ExchangeRateUnavailableException(currencyCode);
+        }
+
+        return result.getBody().getRates().stream().findFirst().map(mapDtoToBigDecimal).get();
+
     }
 
     private Map<String, String> prepareParams(CurrencyCode currencyCode) {
