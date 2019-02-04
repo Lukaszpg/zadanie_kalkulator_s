@@ -24,8 +24,8 @@ public class CalculationController {
     public String calculate(@Valid @RequestBody CalculationDto calculationDto) {
         try {
             return earningsCalculationService.calculate(calculationDto).toString();
-        } catch (ExchangeRateNotFoundException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Exchange rate not available", exception);
+        } catch (ExchangeRateUnavailableException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, exception.getMessage(), exception);
         }
     }
 
