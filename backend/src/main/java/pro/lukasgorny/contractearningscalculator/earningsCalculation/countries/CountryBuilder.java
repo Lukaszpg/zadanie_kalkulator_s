@@ -1,7 +1,6 @@
 package pro.lukasgorny.contractearningscalculator.earningsCalculation.countries;
 
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.enums.CountryEnum;
 
 import java.math.BigDecimal;
 

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.Country;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryFactory;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.enums.CountryEnum;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum;
 
 import java.util.List;
 import java.util.stream.Collectors;

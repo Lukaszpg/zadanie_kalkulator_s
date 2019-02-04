@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pro.lukasgorny.contractearningscalculator.Messages;
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.enums.CountryEnum;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package pro.lukasgorny.contractearningscalculator.earningsCalculation.dto;
 
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.enums.CountryEnum;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum;
 
 import javax.validation.constraints.PositiveOrZero;
 import java.math.BigDecimal;
