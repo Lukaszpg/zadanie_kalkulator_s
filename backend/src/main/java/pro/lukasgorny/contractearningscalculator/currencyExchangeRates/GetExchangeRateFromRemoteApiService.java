@@ -13,7 +13,6 @@ import org.springframework.web.client.RestTemplate;
 
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.CurrencyDto;
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.ExchangeRateDto;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.ExchangeRateUnavailableException;
 
 @Service

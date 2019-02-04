@@ -1,6 +1,6 @@
 package pro.lukasgorny.contractearningscalculator.earningsCalculation;
 
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
+import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.CurrencyCode;
 
 public class ExchangeRateUnavailableException extends Exception {
 

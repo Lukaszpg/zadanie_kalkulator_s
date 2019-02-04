@@ -3,8 +3,8 @@ package pro.lukasgorny.contractearningscalculator.earningsCalculation.countries;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pro.lukasgorny.contractearningscalculator.Messages;
-import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.enums.CountryEnum;
+import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.CurrencyCode;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class CountryFactory {
         }
     };
 
-    public Country getCountry(CountryEnum countryEnum) {
+    Country getCountry(CountryEnum countryEnum) {
         return countriesCache.computeIfAbsent(countryEnum, createCountryFunction);
     }
 
