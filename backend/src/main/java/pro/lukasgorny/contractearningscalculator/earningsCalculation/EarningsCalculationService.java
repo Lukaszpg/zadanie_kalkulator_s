@@ -7,6 +7,7 @@ import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.GetExchan
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.dto.CurrencyDto;
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.enums.CurrencyCode;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.Country;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryFactory;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDto;
 
 import java.math.BigDecimal;

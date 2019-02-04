@@ -20,8 +20,7 @@ public class CalculationController {
         this.earningsCalculationService = earningsCalculationService;
     }
 
-    @GetMapping("/")
-    @ResponseBody
+    @GetMapping("/calculate")
     public String calculate(@Valid @RequestBody CalculationDto calculationDto) {
         try {
             return earningsCalculationService.calculate(calculationDto).toString();
