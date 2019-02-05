@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.GetExchangeRateService;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.Country;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.GetCountryService;
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDto;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDataDto;
 
 @Service
 public class EarningsCalculationService {
@@ -25,12 +25,12 @@ public class EarningsCalculationService {
         this.getExchangeRateService = getExchangeRateService;
     }
 
-    public BigDecimal calculate(CalculationDto calculationDto) throws ExchangeRateUnavailableException {
-        Country country = getCountryService.getCountryByCountryEnum(calculationDto.getCountryEnum());
+    public BigDecimal calculate(CalculationDataDto calculationDataDto) throws ExchangeRateUnavailableException {
+        Country country = getCountryService.getCountryByCountryEnum(calculationDataDto.getCountry());
         BigDecimal exchangeRate = getExchangeRateService.getExchangeRate(country.getCurrencyCode());
         BigDecimal tax = BigDecimal.ONE.subtract(country.getTax());
         BigDecimal days = BigDecimal.valueOf(daysInMonth);
-        BigDecimal overallAmount = calculationDto.getAmount().multiply(days);
+        BigDecimal overallAmount = calculationDataDto.getAmount().multiply(days);
         overallAmount = overallAmount.multiply(tax);
         overallAmount = overallAmount.subtract(country.getFixedCost());
 

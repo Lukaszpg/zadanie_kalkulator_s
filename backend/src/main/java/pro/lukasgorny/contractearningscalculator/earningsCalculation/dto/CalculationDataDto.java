@@ -6,19 +6,20 @@ import javax.validation.constraints.PositiveOrZero;
 
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum;
 
-public class CalculationDto {
+public class CalculationDataDto {
 
     @NotNull(message = "{wrong.country.specified}")
-    private CountryEnum countryEnum;
+    private CountryEnum country;
 
-    @PositiveOrZero(message = "{daily.amount.error}")
+    @NotNull(message = "{daily.amount.NotNull}")
+    @PositiveOrZero(message = "{daily.amount.PositiveOrZero}")
     private BigDecimal amount;
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public CountryEnum getCountryEnum() {
-        return countryEnum;
+    public CountryEnum getCountry() {
+        return country;
     }
 }

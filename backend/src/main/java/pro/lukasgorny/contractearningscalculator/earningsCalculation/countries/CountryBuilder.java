@@ -5,7 +5,7 @@ import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum
 
 import java.math.BigDecimal;
 
-public class CountryBuilder {
+class CountryBuilder {
 
     private Country country;
 
