@@ -10,12 +10,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
-public class GetCountryService {
+public class CountryService {
 
     private final CountryFactory countryFactory;
 
     @Autowired
-    public GetCountryService(CountryFactory countryFactory) {
+    public CountryService(CountryFactory countryFactory) {
         this.countryFactory = countryFactory;
     }
 

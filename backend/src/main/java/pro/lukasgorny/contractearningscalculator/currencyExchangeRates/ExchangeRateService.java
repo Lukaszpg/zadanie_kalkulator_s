@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.ExchangeRateUnavailableException;
 
 @Service
-public class GetExchangeRateService {
+public class ExchangeRateService {
 
     private final GetExchangeRateFromRemoteApiService getExchangeRateFromRemoteApiService;
 
     @Autowired
-    public GetExchangeRateService(GetExchangeRateFromRemoteApiService getExchangeRateFromRemoteApiService) {
+    public ExchangeRateService(GetExchangeRateFromRemoteApiService getExchangeRateFromRemoteApiService) {
         this.getExchangeRateFromRemoteApiService = getExchangeRateFromRemoteApiService;
     }
 

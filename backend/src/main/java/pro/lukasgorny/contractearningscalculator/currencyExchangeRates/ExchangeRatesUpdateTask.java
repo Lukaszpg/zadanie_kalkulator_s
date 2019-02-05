@@ -15,11 +15,11 @@ public class ExchangeRatesUpdateTask {
 
     private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private final GetExchangeRateService getExchangeRateService;
+    private final ExchangeRateService exchangeRateService;
 
     @Autowired
-    public ExchangeRatesUpdateTask(GetExchangeRateService getExchangeRateService) {
-        this.getExchangeRateService = getExchangeRateService;
+    public ExchangeRatesUpdateTask(ExchangeRateService exchangeRateService) {
+        this.exchangeRateService = exchangeRateService;
     }
 
     @Scheduled(fixedDelayString = "${cache.refresh.delay}")
@@ -29,7 +29,7 @@ public class ExchangeRatesUpdateTask {
 
         Stream.of(CurrencyCode.values()).filter(currencyCode -> !CurrencyCode.PLN.equals(currencyCode)).forEach(code -> {
             try {
-                getExchangeRateService.getExchangeRate(code);
+                exchangeRateService.getExchangeRate(code);
                 logger.info("Exchange rate refreshed for: " + code.name());
             } catch (ExchangeRateUnavailableException e) {
                 logger.error(e.getMessage(), e);
