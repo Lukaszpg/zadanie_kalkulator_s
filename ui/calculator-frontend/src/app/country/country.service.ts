@@ -11,6 +11,6 @@ export class CountryService {
     }
 
     getAll(): Observable<any> {
-        return this.http.get('/country/getAll');
+        return this.http.get('http://localhost:8080/country/getAll');
     }
 }

@@ -1,0 +1,10 @@
+{
+  "app.title": "Kalkulator zarobków dla kontraktorów",
+  "pick.a.country": "Wybierz kraj",
+  "country.fixed.cost": "Koszty stałe dla kraju: ",
+  "tax.for.country": "Podatek dla kraju: ",
+  "calculate": "Przelicz",
+  "result": "Wynik",
+  "daily.amount": "Stawka dzienna brutto",
+  "close": "Zamknij"
+}

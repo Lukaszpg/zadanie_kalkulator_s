@@ -4,6 +4,7 @@ import {CalculationService} from "./calculation.service";
 import {MatSnackBar} from "@angular/material";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CalculationData} from "./calculationData.class";
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -13,17 +14,20 @@ import {CalculationData} from "./calculationData.class";
 })
 export class CalculatorComponent implements OnInit {
 
+    tax: string;
+    fixedCost: number;
+    currencyCode: string;
     countries: Array<any>;
     calculationData = new CalculationData();
 
     calculationForm = new FormGroup({
-        "amount": new FormControl(this.calculationData.amount, [Validators.required, Validators.pattern('/^\\d+\\.?\\d*$/')]),
+        "amount": new FormControl(this.calculationData.amount, [Validators.required, Validators.pattern('^[0-9]+(\\.[0-9]{1,2})?$')]),
         "country": new FormControl(this.calculationData.country, Validators.required)
     });
 
     result = new FormControl('');
 
-    constructor(private countryService: CountryService, private calculationService: CalculationService, private snackBar: MatSnackBar) {
+    constructor(private countryService: CountryService, private calculationService: CalculationService, private snackBar: MatSnackBar, private translateService : TranslateService) {
     }
 
     ngOnInit() {
@@ -39,12 +43,34 @@ export class CalculatorComponent implements OnInit {
         );
     }
 
-    displayErrors(response) {
-        console.log(response);
+    onCountryChange(selectedEvent) {
+        this.currencyCode = selectedEvent.value.currencyCode
+        this.fixedCost = selectedEvent.value.fixedCost;
+        this.tax = this.parseTaxToPercentNotation(selectedEvent.value.tax);
+    }
 
-        for (let validationError of response.error.errors) {
-            this.snackBar.open(validationError.defaultMessage, 'Zamknij');
+    parseTaxToPercentNotation(tax) {
+        return String(tax * 100 + "%");
+    }
+
+    displayErrors(response) {
+        if (response.error.errors) {
+            this.displayMultipleErrors(response);
+        } else if (response.error.message) {
+            this.displaySnackBarNotification(response.error.message);
         }
+    }
+
+    displayMultipleErrors(response) {
+        for (let validationError of response.error.errors) {
+            this.displaySnackBarNotification(validationError.defaultMessage);
+        }
+    }
+
+    displaySnackBarNotification(message) {
+        this.translateService.get('close').subscribe(value => {
+            this.snackBar.open(message, value);
+        })
     }
 
 }

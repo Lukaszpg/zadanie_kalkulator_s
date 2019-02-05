@@ -1,9 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
+import {HttpClient, HttpClientModule} from "@angular/common/http";
 
 import {AppComponent} from './app.component';
-import {APIInterceptor} from "./http/http.interceptor";
 import {CalculatorComponent} from './calculator/calculator.component';
 import {
     MatButtonModule,
@@ -12,10 +11,17 @@ import {
     MatOptionModule,
     MatSelectModule,
     MatSnackBarModule,
-    MatToolbarModule
+    MatToolbarModule,
+    MatGridListModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
+import {TranslateLoader, TranslateModule} from "@ngx-translate/core";
+import {TranslateHttpLoader} from "@ngx-translate/http-loader";
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http);
+}
 
 @NgModule({
     declarations: [
@@ -24,6 +30,8 @@ import {ReactiveFormsModule} from "@angular/forms";
     ],
     imports: [
         BrowserModule,
+        ReactiveFormsModule,
+        BrowserAnimationsModule,
         HttpClientModule,
         MatToolbarModule,
         MatFormFieldModule,
@@ -32,16 +40,18 @@ import {ReactiveFormsModule} from "@angular/forms";
         MatInputModule,
         MatButtonModule,
         MatSnackBarModule,
-        ReactiveFormsModule,
-        BrowserAnimationsModule
+        MatGridListModule,
+        TranslateModule.forRoot({
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient]
+            }
+        })
     ],
-    providers: [{
-        provide: HTTP_INTERCEPTORS,
-        useClass: APIInterceptor,
-        multi: true,
-    }
-    ],
+    providers: [],
     bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
