@@ -1,6 +1,5 @@
 package pro.lukasgorny.contractearningscalculator.earningsCalculation;
 
-import java.math.BigDecimal;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import pro.lukasgorny.contractearningscalculator.message.MessageService;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDataDto;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationResponseDto;
+import pro.lukasgorny.contractearningscalculator.message.MessageService;
 
 @RestController
 public class CalculationController {
@@ -26,7 +26,7 @@ public class CalculationController {
     }
 
     @PostMapping("/calculate")
-    public ResponseEntity<BigDecimal> calculate(@Valid @RequestBody CalculationDataDto calculationDataDto) {
+    public ResponseEntity<CalculationResponseDto> calculate(@Valid @RequestBody CalculationDataDto calculationDataDto) {
         try {
             return ResponseEntity.ok(earningsCalculationService.calculate(calculationDataDto));
         } catch (ExchangeRateUnavailableException exception) {

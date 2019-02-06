@@ -2,7 +2,6 @@ package pro.lukasgorny.contractearningscalculator.earningsCalculation;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +10,7 @@ import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.ExchangeR
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.Country;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryService;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDataDto;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationResponseDto;
 
 @Service
 public class EarningsCalculationService {
@@ -27,7 +27,7 @@ public class EarningsCalculationService {
         this.exchangeRateService = exchangeRateService;
     }
 
-    public BigDecimal calculate(CalculationDataDto calculationDataDto) throws ExchangeRateUnavailableException {
+    public CalculationResponseDto calculate(CalculationDataDto calculationDataDto) throws ExchangeRateUnavailableException {
         Country country = countryService.getCountryByCountryEnum(calculationDataDto.getCountry());
         BigDecimal exchangeRate = exchangeRateService.getExchangeRate(country.getCurrencyCode());
         BigDecimal tax = BigDecimal.ONE.subtract(country.getTax());
@@ -35,8 +35,9 @@ public class EarningsCalculationService {
         BigDecimal overallAmount = calculationDataDto.getAmount().multiply(days);
         overallAmount = overallAmount.multiply(tax);
         overallAmount = overallAmount.subtract(country.getFixedCost());
+        overallAmount = overallAmount.multiply(exchangeRate).setScale(2, RoundingMode.CEILING);
 
-        return overallAmount.multiply(exchangeRate).setScale(2, RoundingMode.CEILING);
+        return new CalculationResponseDto(overallAmount);
     }
 
 }

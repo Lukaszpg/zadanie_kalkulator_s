@@ -1,3 +1,5 @@
+package pro.lukasgorny.contractearningscalculator.tests
+
 import org.springframework.boot.test.context.SpringBootTest
 import pro.lukasgorny.contractearningscalculator.Application
 import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.CurrencyCode
@@ -11,7 +13,7 @@ class ExchangeRateServiceTest extends Specification {
     private GetExchangeRateFromRemoteApiService remoteApiService = Stub()
     private ExchangeRateService exchangeRateService = new ExchangeRateService(remoteApiService)
 
-    def "when CurrencyCode.PLN is given then BigDecimal.ONE is returned"() {
+    def "when CurrencyCode.PLN is given then BigDecimal.ONE should be returned"() {
         given:
         def code = CurrencyCode.PLN
         when:
@@ -20,7 +22,7 @@ class ExchangeRateServiceTest extends Specification {
         result == BigDecimal.ONE
     }
 
-    def "when CurrencyCode.EUR is given then non-zero non-null BigDecimal is returned"() {
+    def "when CurrencyCode.EUR is given then non-zero non-null BigDecimal should be returned"() {
         given:
         def code = CurrencyCode.EUR
         and:

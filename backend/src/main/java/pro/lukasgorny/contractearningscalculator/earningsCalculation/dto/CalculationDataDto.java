@@ -22,4 +22,12 @@ public class CalculationDataDto {
     public CountryEnum getCountry() {
         return country;
     }
+
+    public void setCountry(CountryEnum country) {
+        this.country = country;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
 }

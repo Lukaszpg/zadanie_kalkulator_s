@@ -1,3 +1,5 @@
+package pro.lukasgorny.contractearningscalculator.tests
+
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import pro.lukasgorny.contractearningscalculator.Application
@@ -11,7 +13,7 @@ class CountryServiceTest extends Specification {
     @Autowired
     private CountryService countryService
 
-    def "when Germany enum is given then correct Germany object is returned"() {
+    def "when Germany enum is given then correct Germany object should be returned"() {
         given:
         def anEnum = CountryEnum.GERMANY
         when:
@@ -20,7 +22,7 @@ class CountryServiceTest extends Specification {
         CountryEnum.GERMANY == result.countryEnum
     }
 
-    def "when get all is called then not null not zero size list of country is returned"() {
+    def "when get all is called then not null not zero size list of country should be returned"() {
         when:
         def result = countryService.getAll()
         then:

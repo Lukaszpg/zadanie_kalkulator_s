@@ -39,7 +39,7 @@ export class CalculatorComponent implements OnInit {
 
     onSubmit() {
         this.calculationService.calculate(this.calculationForm.value).subscribe(
-            data => this.result.setValue(data),
+            data => this.result.setValue(data["result"]),
             error => this.displayErrors(error)
         );
     }
