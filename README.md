@@ -35,7 +35,7 @@ gradlew clean build
 Gradle is configured to do all the following things: 
 
 1. Get all necessary java dependencies.
-2. Launch unit tests with Spock.
+2. Launch tests with Spock.
 3. Compile Java classes.
 4. Download node and npm if there's none present in the project directory.
 5. Install and configure npm and node.
