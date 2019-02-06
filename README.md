@@ -28,7 +28,7 @@ Clone the repo and execute gradle build task:
 gradlew clean build
 ```
 
-Gradle is configured to do all the following things in this order: 
+Gradle is configured to do all the following things: 
 
 1. Get all necessary java dependencies.
 2. Launch unit tests with Spock.
