@@ -19,7 +19,7 @@ Currency rates are fetched from http://api.nbp.pl/.
 - NPM for frontend dependency management and transpiling from TypeScript to JavaScript
 - Angular 7 + Angular Material Design for frontend
 - Spock for testing
-- CircleCI for Continous Integration
+- CircleCI for Continuous Integration
 
 ### Building the project
 
