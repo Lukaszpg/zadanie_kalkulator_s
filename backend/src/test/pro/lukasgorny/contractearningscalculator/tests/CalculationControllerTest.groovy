@@ -7,7 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest
 import org.springframework.http.MediaType
 import org.springframework.test.web.servlet.MockMvc
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.CalculationController
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.EarningsCalculationService
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDataDto
 import pro.lukasgorny.contractearningscalculator.message.MessageService

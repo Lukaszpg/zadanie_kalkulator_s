@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum;
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum;
 
 public class CalculationDataDto {
 

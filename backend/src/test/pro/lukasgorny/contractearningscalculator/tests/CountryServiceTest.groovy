@@ -3,7 +3,7 @@ package pro.lukasgorny.contractearningscalculator.tests
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import pro.lukasgorny.contractearningscalculator.Application
-import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum
+import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryEnum
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.countries.CountryService
 import spock.lang.Specification
 
