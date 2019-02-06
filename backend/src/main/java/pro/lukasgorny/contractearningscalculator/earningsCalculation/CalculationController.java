@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
-import pro.lukasgorny.contractearningscalculator.Messages;
+import pro.lukasgorny.contractearningscalculator.message.MessageService;
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.dto.CalculationDataDto;
 
 @RestController
 public class CalculationController {
 
-    private final Messages messages;
+    private final MessageService messageService;
     private final EarningsCalculationService earningsCalculationService;
 
     @Autowired
-    public CalculationController(Messages messages, EarningsCalculationService earningsCalculationService) {
-        this.messages = messages;
+    public CalculationController(MessageService messageService, EarningsCalculationService earningsCalculationService) {
+        this.messageService = messageService;
         this.earningsCalculationService = earningsCalculationService;
     }
 
@@ -30,7 +30,7 @@ public class CalculationController {
         try {
             return ResponseEntity.ok(earningsCalculationService.calculate(calculationDataDto));
         } catch (ExchangeRateUnavailableException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, messages.get("exchange.rate.not.available"), exception);
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, messageService.get("exchange.rate.not.available"), exception);
         }
     }
 }

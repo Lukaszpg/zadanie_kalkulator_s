@@ -1,4 +1,4 @@
-package pro.lukasgorny.contractearningscalculator;
+package pro.lukasgorny.contractearningscalculator.config;
 
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;

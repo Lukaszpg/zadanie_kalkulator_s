@@ -16,7 +16,7 @@ export class CalculationService {
 
     prepareData(data) {
         return {
-            "country": data.country.countryEnum,
+            "country": data.country.country,
             "amount": data.amount
         }
     }

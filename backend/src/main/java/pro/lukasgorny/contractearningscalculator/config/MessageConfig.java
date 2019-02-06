@@ -1,4 +1,4 @@
-package pro.lukasgorny.contractearningscalculator;
+package pro.lukasgorny.contractearningscalculator.config;
 
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;

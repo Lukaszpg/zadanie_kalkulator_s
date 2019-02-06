@@ -19,10 +19,8 @@ public class ExchangeRateService {
 
     @Cacheable(value = "exchangeRates")
     public BigDecimal getExchangeRate(CurrencyCode currencyCode) throws ExchangeRateUnavailableException {
-        if(CurrencyCode.PLN.equals(currencyCode)) {
-            return BigDecimal.ONE;
-        }
-
-        return getExchangeRateFromRemoteApiService.getExchangeRateFromRemoteApi(currencyCode);
+        return CurrencyCode.PLN.equals(currencyCode)
+                ? BigDecimal.ONE
+                : getExchangeRateFromRemoteApiService.getExchangeRateFromRemoteApi(currencyCode);
     }
 }

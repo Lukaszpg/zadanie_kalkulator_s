@@ -4,11 +4,14 @@ import pro.lukasgorny.contractearningscalculator.currencyExchangeRates.CurrencyC
 import pro.lukasgorny.contractearningscalculator.earningsCalculation.CountryEnum;
 
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Country {
     protected BigDecimal tax;
     protected BigDecimal fixedCost;
     protected CurrencyCode currencyCode;
+
+    @JsonProperty("country")
     protected CountryEnum countryEnum;
     protected String name;
 

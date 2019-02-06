@@ -13,10 +13,19 @@ class ExchangeRateServiceTest extends Specification {
 
     def "when CurrencyCode.PLN is given then BigDecimal.ONE is returned"() {
         given:
-        CurrencyCode code = CurrencyCode.PLN
+        def code = CurrencyCode.PLN
         when:
-        BigDecimal result = exchangeRateService.getExchangeRate(code)
+        def result = exchangeRateService.getExchangeRate(code)
         then:
         result == BigDecimal.ONE
+    }
+
+    def "when CurrencyCode.EUR is given then non-zero non-null BigDecimal is returned"() {
+        given:
+        def code = CurrencyCode.EUR
+        when:
+        def result = exchangeRateService.getExchangeRate(code)
+        then:
+        result != null && result > BigDecimal.ZERO
     }
 }
