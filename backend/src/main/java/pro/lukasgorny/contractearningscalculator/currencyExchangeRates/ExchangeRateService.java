@@ -12,7 +12,6 @@ public class ExchangeRateService {
 
     private final GetExchangeRateFromRemoteApiService getExchangeRateFromRemoteApiService;
 
-    @Autowired
     public ExchangeRateService(GetExchangeRateFromRemoteApiService getExchangeRateFromRemoteApiService) {
         this.getExchangeRateFromRemoteApiService = getExchangeRateFromRemoteApiService;
     }

@@ -17,7 +17,6 @@ public class ExchangeRatesUpdateTask {
 
     private final ExchangeRateService exchangeRateService;
 
-    @Autowired
     public ExchangeRatesUpdateTask(ExchangeRateService exchangeRateService) {
         this.exchangeRateService = exchangeRateService;
     }
