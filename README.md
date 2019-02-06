@@ -1,5 +1,7 @@
 # Contract currency calculator
 
+[![CircleCI](https://circleci.com/gh/Lukaszpg/zadanie_kalkulator_s/tree/master.svg?style=svg)](https://circleci.com/gh/Lukaszpg/zadanie_kalkulator_s/tree/master)
+
 This project is a recruitment task. Calculator can be used to calculate monthly contract earnings in Polish Zloty using following countries: 
 
 - United Kingdom (25% tax cut, 600 GBP fixed costs)
