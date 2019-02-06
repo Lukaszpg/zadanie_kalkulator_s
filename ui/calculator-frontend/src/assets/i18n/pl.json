@@ -6,5 +6,9 @@
   "calculate": "Przelicz",
   "result": "Wynik",
   "daily.amount": "Stawka dzienna brutto",
-  "close": "Zamknij"
+  "close": "Zamknij",
+  "amount.example":"Np. 123, 123.00",
+  "country.get.error": "Nie udało się pobrać państw.",
+  "amount.is.required": "Stawka dzienna jest wymagana",
+  "country.is.required": "Kraj jest wymagany"
 }

@@ -27,13 +27,14 @@ export class CalculatorComponent implements OnInit {
 
     result = new FormControl('');
 
-    constructor(private countryService: CountryService, private calculationService: CalculationService, private snackBar: MatSnackBar, private translateService : TranslateService) {
+    constructor(private countryService: CountryService, private calculationService: CalculationService, private snackBar: MatSnackBar, private translateService: TranslateService) {
     }
 
     ngOnInit() {
-        this.countryService.getAll().subscribe(data => {
-            this.countries = data
-        });
+        this.countryService.getAll().subscribe(
+            data => this.countries = data,
+            error => this.displayCountryGetError()
+        );
     }
 
     onSubmit() {
@@ -65,6 +66,12 @@ export class CalculatorComponent implements OnInit {
         for (let validationError of response.error.errors) {
             this.displaySnackBarNotification(validationError.defaultMessage);
         }
+    }
+
+    displayCountryGetError() {
+        this.translateService.get('country.get.error').subscribe(value => {
+            this.displaySnackBarNotification(value);
+        })
     }
 
     displaySnackBarNotification(message) {

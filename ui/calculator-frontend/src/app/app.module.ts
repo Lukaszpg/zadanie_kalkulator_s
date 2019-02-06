@@ -7,12 +7,11 @@ import {CalculatorComponent} from './calculator/calculator.component';
 import {
     MatButtonModule,
     MatFormFieldModule,
+    MatGridListModule,
     MatInputModule,
     MatOptionModule,
     MatSelectModule,
-    MatSnackBarModule,
-    MatToolbarModule,
-    MatGridListModule
+    MatSnackBarModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -33,7 +32,6 @@ export function HttpLoaderFactory(http: HttpClient) {
         ReactiveFormsModule,
         BrowserAnimationsModule,
         HttpClientModule,
-        MatToolbarModule,
         MatFormFieldModule,
         MatSelectModule,
         MatOptionModule,

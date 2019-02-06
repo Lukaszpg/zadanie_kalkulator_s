@@ -1,5 +1,5 @@
 <form [formGroup]="calculationForm" (ngSubmit)="onSubmit()">
-    <p>
+    <div>
         <mat-form-field appearance="outline">
             <mat-select (selectionChange)="onCountryChange($event)" formControlName="country"
                         placeholder="{{'pick.a.country' | translate}}">
@@ -7,28 +7,30 @@
                     {{country.name}}
                 </mat-option>
             </mat-select>
+            <mat-error *ngIf='calculationForm.get("amount").hasError("required")'>
+                {{'country.is.required' | translate}}
+            </mat-error>
         </mat-form-field>
-    </p>
-
-    <p>
+    </div>
+    <div>
         <mat-form-field appearance="outline">
             <input matInput formControlName="amount" placeholder="{{'daily.amount' | translate}}"/>
+            <mat-error *ngIf='calculationForm.get("amount").hasError("required")'>
+                {{'amount.is.required' | translate}}
+            </mat-error>
         </mat-form-field>
         <span class="currency-result">{{currencyCode}}</span>
-    </p>
-
+    </div>
     <div>
         <div *ngIf="fixedCost != undefined">{{'country.fixed.cost' | translate}} {{fixedCost}} {{currencyCode}}</div>
         <div *ngIf="tax != undefined">{{'tax.for.country' | translate}} {{tax}}</div>
     </div>
-
-    <p>
+    <div>
         <mat-form-field appearance="outline">
             <input matInput readonly [formControl]="result" placeholder="{{'result' | translate}}">
         </mat-form-field>
         <span class="currency-result">PLN</span>
-    </p>
-
-    <button mat-raised-button type="submit" [disabled]="!calculationForm.valid">{{'calculate' | translate}}</button>
+    </div>
+    <button mat-stroked-button type="submit" [disabled]="!calculationForm.valid">{{'calculate' | translate}}</button>
 </form>
 
