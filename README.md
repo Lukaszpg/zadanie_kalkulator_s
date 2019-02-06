@@ -16,7 +16,8 @@ Currency rates are fetched from http://api.nbp.pl/.
 
 - Spring Boot as a backend technology
 - Gradle for backend dependency management and project building
-- NPM for frontend dependency management and transpiling from TypeScript to JavaScript
+- NPM for frontend dependency management
+- Webpack for transpiling from TypeScript to JavaScript
 - Angular 7 + Angular Material Design for frontend
 - Spock for testing
 - CircleCI for Continuous Integration
